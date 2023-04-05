@@ -42,12 +42,13 @@ public class Character implements Serializable {
 	public Character() {
 	}
 
-	public Character(Long id, String name, Integer age, String residence, String history) {
+	public Character(Long id, String name, Integer age, String residence, String history, String imgUrl) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.residence = residence;
 		this.history = history;
+		this.imgUrl = imgUrl;
 	}
 
 	public Long getId() {
