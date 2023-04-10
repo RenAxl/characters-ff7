@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoriesRoutingModule } from './categories-routing.modules';
 
 
 
@@ -11,7 +12,9 @@ import { CategoryListComponent } from './category-list/category-list.component';
     CategoryListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
+    CategoriesRoutingModule
   ]
 })
 export class CategoriesModule { }
