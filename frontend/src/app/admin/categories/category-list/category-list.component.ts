@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
+  categories = [
+    { name: 'Principal'},
+    { name: 'Membro da Shinra' },
+    { name: 'Secundário' },
+    { name: 'Vilão' },
+    { name: 'Weapon' },
+    { name: 'Turk' },
+    { name: 'Monstro' },
+    { name: 'Chefe' },
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
