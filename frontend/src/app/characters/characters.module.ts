@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import {PaginatorModule} from 'primeng/paginator';
 import { DropdownModule } from 'primeng/dropdown';
@@ -21,7 +22,7 @@ import { FilterComponent } from './filter/filter.component';
   imports: [
     CommonModule,
     FormsModule,
-
+    RouterModule,
 
     PaginatorModule,
     InputTextModule,
