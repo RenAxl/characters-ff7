@@ -1,1 +1,59 @@
-<h1>Personagens</h1>
+<div class="container my-4 characters-container">
+  <div class="row characters-title mb-2">
+    <h1>Personagens do Final Fantasy 7</h1>
+  </div>
+
+  <app-filter text="Digite o nome do Personagem"></app-filter>
+
+  <div class="row">
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <a href="javascript:;">
+        <app-card></app-card>
+      </a>
+    </div>
+  </div>
+
+  <p-paginator [first]="1" [rows]="4" [totalRecords]="8"></p-paginator>
+</div>

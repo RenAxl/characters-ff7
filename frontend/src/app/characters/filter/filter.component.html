@@ -1,0 +1,37 @@
+<div class="filter-container">
+  <form
+    #categoryForm="ngForm"
+    (ngSubmit)="save(categoryForm)"
+    class="filter-form"
+  >
+    <div class="filter-name-container">
+      <input
+        pInputText
+        placeholder="{{ text }}"
+        type="text"
+        name="name"
+        [(ngModel)]="character.name"
+        #name="ngModel"
+        class="form-control"
+      />
+      <button class="filter-search-icon">
+        <img src="assets/images/search-icon.svg" alt="filtro" />
+      </button>
+    </div>
+    <div class="filter-bottom-container">
+      <div class="filter-category-container">
+        <p-dropdown
+          [options]="categories"
+          placeholder="Selecione"
+          name="category"
+          [(ngModel)]="select"
+          #category
+          styleClass="form-control"
+        ></p-dropdown>
+      </div>
+      <button class="btn btn-outline-secondary btn-filter-clear">
+        LIMPAR<span class="btn-filter-word"> FILTRO</span>
+      </button>
+    </div>
+  </form>
+</div>

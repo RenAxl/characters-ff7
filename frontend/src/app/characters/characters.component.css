@@ -1,0 +1,19 @@
+.characters-container {
+  font-size: 18px;
+}
+
+.characters-container a {
+  text-decoration: none;
+}
+
+.characters-title h1 {
+  font-size: 1em;
+  letter-spacing: -0.015em;
+  color: blue;
+}
+
+@media (min-width: 576px) {
+  .characters-container {
+    font-size: 30px;
+  }
+}
