@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/core/models/Category';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-category-form',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryFormComponent implements OnInit {
 
+  category: Category = new Category();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  save(form: NgForm){
+    console.log(form.value);
   }
 
 }
