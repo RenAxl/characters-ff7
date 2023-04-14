@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
+import { LazyLoadEvent } from 'primeng/api';
+
+
 import { Category } from 'src/app/core/models/Category';
 import { CategoryService } from '../category.service';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 @Component({
   selector: 'app-category-list',
@@ -11,20 +16,34 @@ export class CategoryListComponent implements OnInit {
 
   categories: Category[] = [];
 
+  pagination: Pagination = new Pagination();
+
+  totalElements: number = 0;
+
+
   constructor(
     private categoryService: CategoryService
-  ) { }
+  ) {
+    this.pagination.linesPerPage = 3;
+   }
 
   ngOnInit(): void {
     this.list();
   }
 
-  list(): void {
+  list(page: number = 0): void {
+    this.pagination.page = page;
     this.categoryService
-      .list()
+      .list(this.pagination)
       .subscribe((data) => {
         this.categories = data.content;
+        this.totalElements = data.totalElements;
       });
+  }
+
+  changePage(event: LazyLoadEvent) {
+    const page = event!.first! / event!.rows!;
+    this.list(page);
   }
 
 }
