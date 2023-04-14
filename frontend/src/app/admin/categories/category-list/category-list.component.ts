@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/core/models/Category';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -7,20 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
-  categories = [
-    { name: 'Principal'},
-    { name: 'Membro da Shinra' },
-    { name: 'Secundário' },
-    { name: 'Vilão' },
-    { name: 'Weapon' },
-    { name: 'Turk' },
-    { name: 'Monstro' },
-    { name: 'Chefe' },
-  ]
+  categories: Category[] = [];
 
-  constructor() { }
+  constructor(
+    private categoryService: CategoryService
+  ) { }
 
   ngOnInit(): void {
+    this.list();
+  }
+
+  list(): void {
+    this.categoryService
+      .list()
+      .subscribe((data) => {
+        this.categories = data.content;
+      });
   }
 
 }
