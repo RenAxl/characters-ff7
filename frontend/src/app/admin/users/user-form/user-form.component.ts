@@ -28,5 +28,4 @@ export class UserFormComponent implements OnInit {
   save(form: NgForm){
     console.log(form.value);
   }
-
 }

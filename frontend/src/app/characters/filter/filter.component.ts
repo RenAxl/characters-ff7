@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Category } from 'src/app/core/models/Category';
 import { Character } from 'src/app/core/models/Character';
 
 @Component({
@@ -12,15 +13,15 @@ export class FilterComponent implements OnInit {
 
   character: Character = new Character();
 
-  categories = [
-    { label: 'Principal', value: 1 },
-    { label: 'Membro da Shinra', value: 2 },
-    { label: 'Secundário', value: 3 },
-    { label: 'Vilão', value: 4 },
-    { label: 'Weapon', value: 5 },
-    { label: 'Turk', value: 6 },
-    { label: 'Monstro', value: 7 },
-    { label: 'Chefe', value: 8 },
+  categories: Category[] = [
+    { id: 1, name: 'Principal' },
+    { id: 2, name: 'Membro da Shinra' },
+    { id: 3, name: 'Secundário' },
+    { id: 4, name: 'Vilão' },
+    { id: 5, name: 'Weapon' },
+    { id: 6, name: 'Turk' },
+    { id: 7, name: 'Monstro' },
+    { id: 8, name: 'Chefe' },
   ];
 
   select: number[] = [];
