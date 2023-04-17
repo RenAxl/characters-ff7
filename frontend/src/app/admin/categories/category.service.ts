@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConstants } from 'src/app/app-constants';
 import { Pagination } from 'src/app/core/models/Pagination';
+import { Category } from 'src/app/core/models/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class CategoryService {
     .set('orderBy', String(pagination.orderBy));
 
     return this.http.get<any>(AppConstants.backendServer + 'categories', { params });
+  }
+
+  insert(category: Category) : Observable<any> {
+    return this.http.post<any>(AppConstants.backendServer + 'categories', category);
   }
 
 }

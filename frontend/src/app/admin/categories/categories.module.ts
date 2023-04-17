@@ -10,8 +10,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoriesRoutingModule } from './categories-routing.modules';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminModule } from '../admin.module';
-import { CoreModule } from 'src/app/core/core.module';
 
 
 
@@ -24,11 +24,11 @@ import { CoreModule } from 'src/app/core/core.module';
     CommonModule,
     FormsModule,
 
-    CoreModule,
+    AdminModule,
+    SharedModule,
     ButtonModule,
     TableModule,
     TooltipModule,
-    AdminModule,
     InputTextModule,
     CategoriesRoutingModule
   ]

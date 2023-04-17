@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MessageComponent } from './message/message.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
-
-
+import { ErrorHandlerService } from './error-handler.service';
 
 @NgModule({
-  declarations: [MessageComponent],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    
+    ToastModule
   ],
-  exports: [MessageComponent]
+  exports: [
+    ToastModule,
+  ],
+  providers: [
+    MessageService,
+    ErrorHandlerService,
+  ]
 })
-export class CoreModule { }
+export class CoreModule {}

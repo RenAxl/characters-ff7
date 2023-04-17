@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LoginRoutingModule } from './login-routing.modules';
-import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -16,7 +16,7 @@ import { CoreModule } from 'src/app/core/core.module';
     CommonModule,
     FormsModule,
 
-    CoreModule,
+    SharedModule,
     LoginRoutingModule
   ]
 })

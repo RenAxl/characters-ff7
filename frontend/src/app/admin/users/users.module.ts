@@ -13,6 +13,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UsersRoutingModule } from './users-routing.modules';
 import { AdminModule } from '../admin.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -25,13 +26,13 @@ import { CoreModule } from 'src/app/core/core.module';
     CommonModule,
     FormsModule,
 
-    AdminModule,
     ButtonModule,
     TableModule,
     TooltipModule,
     InputTextModule,
     MultiSelectModule,
-    CoreModule,
+    AdminModule,
+    SharedModule,
     UsersRoutingModule
   ]
 })

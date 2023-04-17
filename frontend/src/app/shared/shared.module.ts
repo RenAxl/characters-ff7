@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IconsModule } from './icons/icons.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { MessageComponent } from './message/message.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   ],
   exports:[
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    MessageComponent
   ]
 })
 export class SharedModule { }

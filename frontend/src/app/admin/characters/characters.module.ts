@@ -14,7 +14,7 @@ import { CharacterFormComponent } from './character-form/character-form.componen
 import { CharacterListComponent } from './character-list/character-list.component';
 import { CharactersRoutingModule } from './characters-routing.modules';
 import { AdminModule } from '../admin.module';
-import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -28,6 +28,7 @@ import { CoreModule } from 'src/app/core/core.module';
     FormsModule,
 
     AdminModule,
+    SharedModule,
     ButtonModule,
     TableModule,
     TooltipModule,
@@ -35,7 +36,6 @@ import { CoreModule } from 'src/app/core/core.module';
     InputTextModule,
     InputTextareaModule,
     DropdownModule,
-    CoreModule,
     CharactersRoutingModule
   ]
 })
