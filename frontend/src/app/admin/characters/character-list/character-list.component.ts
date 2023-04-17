@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Character } from 'src/app/core/models/Character';
+import { CharacterService } from '../character.service';
 
 @Component({
   selector: 'app-character-list',
@@ -7,52 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterListComponent implements OnInit {
 
-  characters = [
-    {
-      name: "Cloud Strife",
-      age: 21,
-      residence: "Nibelhein"
-    },
-    {
-      name: "Rufus Shinra",
-      age: 25,
-      residence: "Midgar"
-    },
-    {
-      name: "Elmyra Gainsborough",
-      age: 45,
-      residence: "Midgar"
-    },
-    {
-      name: "Sephiroth",
-      age: 27,
-      residence: "Nibelhein"
-    },
-    {
-      name: "Ultimate Weapon",
-      age: 0,
-      residence: "Desconhecido"
-    },
-    {
-      name: "Rude",
-      age: 30,
-      residence: "Midgar"
-    },
-    {
-      name: "Midgar Zolom",
-      age: 0,
-      residence: "Grasslands area"
-    },
-    {
-      name: "Lost Number",
-      age: 0,
-      residence: "Shinra Mansion"
-    },
-  ]
+  characters: Character[] = []
 
-  constructor() { }
+  constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
+    this.list();
+  }
+
+  list(): void {
+    this.characterService.list().subscribe((data)=> {
+      this.characters = data.content;
+    });
   }
 
 }

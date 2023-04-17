@@ -15,6 +15,7 @@ import { CharacterListComponent } from './character-list/character-list.componen
 import { CharactersRoutingModule } from './characters-routing.modules';
 import { AdminModule } from '../admin.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CharacterService } from './character.service';
 
 
 
@@ -37,6 +38,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     InputTextareaModule,
     DropdownModule,
     CharactersRoutingModule
-  ]
+  ],
+  providers: [CharacterService],
 })
 export class CharactersModule { }

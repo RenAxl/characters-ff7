@@ -12,6 +12,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoriesRoutingModule } from './categories-routing.modules';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminModule } from '../admin.module';
+import { CategoryService } from './category.service';
 
 
 
@@ -31,6 +32,7 @@ import { AdminModule } from '../admin.module';
     TooltipModule,
     InputTextModule,
     CategoriesRoutingModule
-  ]
+  ],
+  providers: [CategoryService],
 })
 export class CategoriesModule { }
