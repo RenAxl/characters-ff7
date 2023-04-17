@@ -4,7 +4,10 @@
       NOVA CATEGORIA
     </button>
   </a>
-  <app-admin-filter text="Digite o nome da categoria"></app-admin-filter>
+  <app-admin-filter
+    text="Digite o nome do instrutor"
+    (search)="searchTrainer($event)"
+  ></app-admin-filter>
 </div>
 <div class="category-card">
   <div class="grid">

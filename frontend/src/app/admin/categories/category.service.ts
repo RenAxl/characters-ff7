@@ -12,8 +12,9 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  list(pagination: Pagination): Observable<any> {
+  list(pagination: Pagination, filterName: string): Observable<any> {
     let params = new HttpParams()
+    .set('name', filterName)
     .set('page', String(pagination.page))
     .set('linesPerPage', String(pagination.linesPerPage))
     .set('direction', String(pagination.direction))

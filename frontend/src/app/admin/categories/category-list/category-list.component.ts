@@ -20,6 +20,7 @@ export class CategoryListComponent implements OnInit {
 
   totalElements: number = 0;
 
+  filterName: string = '';
 
   constructor(
     private categoryService: CategoryService
@@ -28,13 +29,12 @@ export class CategoryListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.list();
   }
 
   list(page: number = 0): void {
     this.pagination.page = page;
     this.categoryService
-      .list(this.pagination)
+      .list(this.pagination, this.filterName)
       .subscribe((data) => {
         this.categories = data.content;
         this.totalElements = data.totalElements;
@@ -44,6 +44,11 @@ export class CategoryListComponent implements OnInit {
   changePage(event: LazyLoadEvent) {
     const page = event!.first! / event!.rows!;
     this.list(page);
+  }
+
+  searchTrainer(name: string) {
+    this.filterName = name;
+    this.list();
   }
 
 }

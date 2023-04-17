@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-admin-filter',
@@ -8,10 +8,23 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FilterComponent implements OnInit {
 
   @Input() text: string = '';
+  @Input() nameFilter: string = '';
+  @Output() search = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  searchName(){
+    console.log("Filtro de pesquisa: " + this.nameFilter);
+    this.search.emit(this.nameFilter);
+  }
+
+  formClear(){
+    this.nameFilter = '';
+    this.searchName();
+  }
+ 
 
 }
