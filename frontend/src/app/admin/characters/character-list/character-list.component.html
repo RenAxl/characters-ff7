@@ -12,7 +12,11 @@
             [value]="characters"
             [responsive]="true"
             [paginator]="true"
-            [rows]="3"
+            [rows]="pagination.linesPerPage"
+            [lazy]="true"
+            [totalRecords]="totalElements"
+            (onLazyLoad)="changePage($event)"
+            #characterTable
           >
             <ng-template pTemplate="header">
               <tr>
