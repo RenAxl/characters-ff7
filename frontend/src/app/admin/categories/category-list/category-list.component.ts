@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 
 
 import { Category } from 'src/app/core/models/Category';
 import { CategoryService } from '../category.service';
 import { Pagination } from 'src/app/core/models/Pagination';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-category-list',
@@ -22,8 +24,13 @@ export class CategoryListComponent implements OnInit {
 
   filterName: string = '';
 
+  @ViewChild('categoryTable') grid!: Table;
+
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private messageService: MessageService,
+    private errorHandler: ErrorHandlerService,
+    private confirmationService: ConfirmationService,
   ) {
     this.pagination.linesPerPage = 3;
    }
@@ -49,6 +56,19 @@ export class CategoryListComponent implements OnInit {
   searchTrainer(name: string) {
     this.filterName = name;
     this.list();
+  }
+
+  delete(trainer: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.categoryService.delete(trainer.id).subscribe(() => {
+          this.grid.reset();
+          this.messageService.add({ severity: 'success', detail: 'Instrutor excluído com sucesso!' })
+        }, error => this.errorHandler.handle(error));
+      }
+    });
+
   }
 
 }
