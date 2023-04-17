@@ -11,13 +11,14 @@ import { Pagination } from 'src/app/core/models/Pagination';
 export class CharacterService {
   constructor(private http: HttpClient) {}
 
-  list(pagination: Pagination): Observable<any> {
+  list(pagination: Pagination, filterName: string): Observable<any> {
     let params = new HttpParams()
+    .set('name', filterName)
     .set('page', String(pagination.page))
     .set('linesPerPage', String(pagination.linesPerPage))
     .set('direction', String(pagination.direction))
     .set('orderBy', String(pagination.orderBy));
-    
+
     return this.http.get<any>(AppConstants.backendServer + 'characters', { params });
   }
 

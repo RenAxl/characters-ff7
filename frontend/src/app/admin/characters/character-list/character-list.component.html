@@ -1,75 +1,82 @@
 <div class="container">
-    <div class="character-filter-container">
-      <a routerLink="/admin/characters/create">
-        <button class="btn btn-primary text-white btn-crud-new">NOVO PERSONAGEM</button>
-      </a>
-      <app-admin-filter text="Digite o nome do Personagem"></app-admin-filter>
-    </div>
-    <div class="character-card">
-      <div class="grid">
-        <div class="col-12">
-          <p-table
-            [value]="characters"
-            [responsive]="true"
-            [paginator]="true"
-            [rows]="pagination.linesPerPage"
-            [lazy]="true"
-            [totalRecords]="totalElements"
-            (onLazyLoad)="changePage($event)"
-            #characterTable
-          >
-            <ng-template pTemplate="header">
-              <tr>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Idade</th>
-                <th>Residência</th>
-                <th>Classificação</th>
-                <th class="actions"></th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-character>
-              <tr>
-                <td class="columns">
-                  <span class="p-column-title">Nome:</span>
-                  {{ character.name }}
-                </td>
+  <div class="character-filter-container">
+    <a routerLink="/admin/characters/create">
+      <button class="btn btn-primary text-white btn-crud-new">
+        NOVO PERSONAGEM
+      </button>
+    </a>
+    <app-admin-filter
+      text="Digite o nome do personagem"
+      (search)="searchTrainer($event)"
+    ></app-admin-filter>
+  </div>
+  <div class="character-card">
+    <div class="grid">
+      <div class="col-12">
+        <p-table
+          [value]="characters"
+          [responsive]="true"
+          [paginator]="true"
+          [rows]="pagination.linesPerPage"
+          [lazy]="true"
+          [totalRecords]="totalElements"
+          (onLazyLoad)="changePage($event)"
+          #characterTable
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Idade</th>
+              <th>Residência</th>
+              <th>Classificação</th>
+              <th class="actions"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-character>
+            <tr>
+              <td class="columns">
+                <span class="p-column-title">Nome:</span>
+                {{ character.name }}
+              </td>
 
-                <td class="columns" *ngFor="let category of character.categories; index as i">
-                  <span class="p-column-title" >Categoria:</span>
-                    {{ category.name }}         
-                </td>
-  
-                <td class="columns">
-                  <span class="p-column-title">Idade:</span>
-                  {{ character.age }}
-                </td>
-  
-                <td class="columns">
-                  <span class="p-column-title">Residência:</span>
-                  {{ character.residence }}
-                </td>
-  
-                <td class="col-actions">
-                  <a
-                    pButton
-                    icon="pi pi-pencil"
-                    pTooltip="Editar"
-                    tooltipPosition="top"
-                    [routerLink]="['/admin/characters', character.id]"
-                  ></a>
-                  <button
-                    pButton
-                    icon="pi pi-trash"
-                    pTooltip="Excluir"
-                    tooltipPosition="top"
-                  ></button>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
+              <td
+                class="columns"
+                *ngFor="let category of character.categories; index as i"
+              >
+                <span class="p-column-title">Categoria:</span>
+                {{ category.name }}
+              </td>
+
+              <td class="columns">
+                <span class="p-column-title">Idade:</span>
+                {{ character.age }}
+              </td>
+
+              <td class="columns">
+                <span class="p-column-title">Residência:</span>
+                {{ character.residence }}
+              </td>
+
+              <td class="col-actions">
+                <a
+                  pButton
+                  icon="pi pi-pencil"
+                  pTooltip="Editar"
+                  tooltipPosition="top"
+                  [routerLink]="['/admin/characters', character.id]"
+                ></a>
+                <button
+                  pButton
+                  icon="pi pi-trash"
+                  pTooltip="Excluir"
+                  tooltipPosition="top"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </div>
-  
+</div>

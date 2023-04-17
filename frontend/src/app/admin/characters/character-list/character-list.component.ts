@@ -19,6 +19,8 @@ export class CharacterListComponent implements OnInit {
 
   totalElements: number = 0;
 
+  filterName: string = '';
+
   constructor(private characterService: CharacterService) { 
     this.pagination.linesPerPage = 3;
   }
@@ -28,7 +30,7 @@ export class CharacterListComponent implements OnInit {
 
   list(page: number = 0): void {
     this.pagination.page = page;
-    this.characterService.list(this.pagination).subscribe((data)=> {
+    this.characterService.list(this.pagination, this.filterName).subscribe((data)=> {
       this.characters = data.content;
       this.totalElements = data.totalElements;
     });
@@ -37,6 +39,11 @@ export class CharacterListComponent implements OnInit {
   changePage(event: LazyLoadEvent) {
     const page = event!.first! / event!.rows!;
     this.list(page);
+  }
+
+  searchTrainer(name: string) {
+    this.filterName = name;
+    this.list();
   }
 
 }
