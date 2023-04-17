@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  Router } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 
@@ -19,15 +19,29 @@ export class CategoryFormComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
+    private route: ActivatedRoute,
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     ) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('categoryId'); 
+    
+    if(id !=null){
+      this.categoryService.findById(id).subscribe(data => {
+        console.log(data);
+        this.category = data;
+      })
+    }
   }
 
   save(){
-    this.insert();
+    if (this.category.id != null && this.category.id.toString().trim() != null) { 
+      this.update();
+    }else{
+      this.insert();
+    }
+  
   }
 
   insert(){
@@ -35,6 +49,13 @@ export class CategoryFormComponent implements OnInit {
       this.router.navigate(['/admin/categories/list']);
       this.messageService.add({ severity: 'success', detail: 'Categoria cadastrada com sucesso!' });
     }, error => this.errorHandler.handle(error)); 
+  }
+
+  update(){
+    this.categoryService.update(this.category).subscribe(data => {
+      this.router.navigate(['/admin/categories/list']);
+      this.messageService.add({ severity: 'success', detail: 'Categoria editada com sucesso!' });
+    }, error => this.errorHandler.handle(error));
   }
 
 }
