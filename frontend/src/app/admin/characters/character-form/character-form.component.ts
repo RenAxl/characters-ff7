@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 
@@ -30,17 +30,31 @@ export class CharacterFormComponent implements OnInit {
     private categoryService: CategoryService,
     private messageService: MessageService,
     private router: Router,
+    private route: ActivatedRoute,
     private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit(): void {
     this.listCategories();
+
+    const id = this.route.snapshot.paramMap.get('characterId');
+
+    if(id !=null){
+      this.characterService.findById(id).subscribe(data => {
+        this.character = data;
+        console.log(data);
+        console.log(this.character);
+      })
+    }
   }
 
   save(form: NgForm){
-    console.log(form.value);
     this.character.categories = form.value.categories;
-    this.insert();
+    if (this.character.id != null && this.character.id.toString().trim() != null) { 
+      this.update();
+    }else{
+      this.insert();
+    }
   }
 
   listCategories() {
@@ -59,6 +73,15 @@ export class CharacterFormComponent implements OnInit {
       () => {
         this.router.navigate(['/admin/characters/list']);
         this.messageService.add({ severity: 'success', detail: 'Personagem cadastrado com sucesso!' });
+      },
+      (error) => this.errorHandler.handle(error));
+  }
+
+  update() {
+    this.characterService.update(this.character).subscribe(
+      () => {
+        this.router.navigate(['/admin/characters/list']);
+        this.messageService.add({ severity: 'success', detail: 'Personagem editado com sucesso!' });
       },
       (error) => this.errorHandler.handle(error));
   }

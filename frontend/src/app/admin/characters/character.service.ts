@@ -24,9 +24,15 @@ export class CharacterService {
   }
 
   insert(character: Character): Observable<any> {
-    console.log(character);
-
     return this.http.post<any>(AppConstants.backendServer + 'characters', character);
+  }
+
+  findById(id: any): Observable<any> {
+    return this.http.get<any>(AppConstants.backendServer + 'characters/' + id);
+  }
+  
+  update(character: Character) : Observable<any> {
+    return this.http.put<any>(AppConstants.backendServer + 'characters/' + character.id, character);
   }
 
 
