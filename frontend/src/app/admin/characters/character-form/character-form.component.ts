@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Category } from 'src/app/core/models/Category';
+import { Router } from '@angular/router';
+
+import { MessageService } from 'primeng/api';
 
 import { Character } from 'src/app/core/models/Character';
+import { CharacterService } from '../character.service';
+import { CategoryService } from '../../categories/category.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Category } from 'src/app/core/models/Category';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 
 @Component({
@@ -14,26 +21,46 @@ export class CharacterFormComponent implements OnInit {
 
   character: Character = new Character();
   
-  categories: Category[] = [
-    { id: 1, name: 'Principal' },
-    { id: 2, name: 'Membro da Shinra' },
-    { id: 3, name: 'Secundário' },
-    { id: 4, name: 'Vilão' },
-    { id: 5, name: 'Weapon' },
-    { id: 6, name: 'Turk' },
-    { id: 7, name: 'Monstro' },
-    { id: 8, name: 'Chefe' },
-  ];
+  categories: Category[] = [];
+
   select: number[] = [];
 
-  constructor() { }
+  constructor(
+    private characterService: CharacterService,
+    private categoryService: CategoryService,
+    private messageService: MessageService,
+    private router: Router,
+    private errorHandler: ErrorHandlerService
+  ) { }
 
   ngOnInit(): void {
+    this.listCategories();
   }
 
   save(form: NgForm){
     console.log(form.value);
+    this.character.categories = form.value.categories;
+    this.insert();
   }
 
+  listCategories() {
+    let pagination: Pagination = new Pagination();
+    let categoryFilterName: string = '';
+    pagination.linesPerPage = 12;
+    this.categoryService
+      .list(pagination, categoryFilterName)
+      .subscribe((data) => {
+        this.categories = data.content;
+      });
+  }
+
+  insert() {
+    this.characterService.insert(this.character).subscribe(
+      () => {
+        this.router.navigate(['/admin/characters/list']);
+        this.messageService.add({ severity: 'success', detail: 'Personagem cadastrado com sucesso!' });
+      },
+      (error) => this.errorHandler.handle(error));
+  }
 
 }

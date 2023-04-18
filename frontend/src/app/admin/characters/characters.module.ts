@@ -7,8 +7,8 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 import { CharacterFormComponent } from './character-form/character-form.component';
 import { CharacterListComponent } from './character-list/character-list.component';
@@ -36,7 +36,7 @@ import { CharacterService } from './character.service';
     InputNumberModule,
     InputTextModule,
     InputTextareaModule,
-    DropdownModule,
+    MultiSelectModule,
     CharactersRoutingModule
   ],
   providers: [CharacterService],

@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppConstants } from '../../app-constants';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/core/models/Pagination';
+import { Character } from 'src/app/core/models/Character';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,12 @@ export class CharacterService {
 
     return this.http.get<any>(AppConstants.backendServer + 'characters', { params });
   }
+
+  insert(character: Character): Observable<any> {
+    console.log(character);
+
+    return this.http.post<any>(AppConstants.backendServer + 'characters', character);
+  }
+
 
 }

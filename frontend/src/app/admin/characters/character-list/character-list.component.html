@@ -40,12 +40,11 @@
                 {{ character.name }}
               </td>
 
-              <td
-                class="columns"
-                *ngFor="let category of character.categories; index as i"
-              >
+              <td class="columns">
                 <span class="p-column-title">Categoria:</span>
-                {{ category.name }}
+                <div *ngFor="let category of character.categories; index as i">
+                  {{ category.name }}
+                </div>
               </td>
 
               <td class="columns">

@@ -64,7 +64,7 @@ export class CategoryListComponent implements OnInit {
       accept: () => {
         this.categoryService.delete(trainer.id).subscribe(() => {
           this.grid.reset();
-          this.messageService.add({ severity: 'success', detail: 'Instrutor excluído com sucesso!' })
+          this.messageService.add({ severity: 'success', detail: 'Categoria excluída com sucesso!' })
         }, error => this.errorHandler.handle(error));
       }
     });
