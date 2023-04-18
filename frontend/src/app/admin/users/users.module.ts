@@ -14,6 +14,7 @@ import { UsersRoutingModule } from './users-routing.modules';
 import { AdminModule } from '../admin.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UserService } from './user.service';
 
 
 
@@ -34,6 +35,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AdminModule,
     SharedModule,
     UsersRoutingModule
-  ]
+  ],
+  providers: [UserService],
 })
 export class UsersModule { }
