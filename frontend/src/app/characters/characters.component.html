@@ -6,53 +6,12 @@
   <app-filter text="Digite o nome do Personagem"></app-filter>
 
   <div class="row">
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/1">
-        <app-card></app-card>
+    <div class="col-sm-6 col-lg-4 col-xl-3"  *ngFor="let character of characters; index as i">
+      <a [routerLink]="['/characters', character.id]">
+        <app-card [character]="character"></app-card>
       </a>
     </div>
 
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/2">
-        <app-card></app-card>
-      </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/3">
-        <app-card></app-card>
-      </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/4">
-        <app-card></app-card>
-      </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/5">
-        <app-card></app-card>
-      </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/6">
-        <app-card></app-card>
-      </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/7">
-        <app-card></app-card>
-      </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <a routerLink="/characters/8">
-        <app-card></app-card>
-      </a>
-    </div>
   </div>
 
   <p-paginator [first]="1" [rows]="4" [totalRecords]="8"></p-paginator>
