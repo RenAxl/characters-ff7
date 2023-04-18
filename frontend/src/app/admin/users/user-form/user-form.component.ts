@@ -3,6 +3,10 @@ import { NgForm } from '@angular/forms';
 
 import { Role } from 'src/app/core/models/Role';
 import { User } from 'src/app/core/models/User';
+import { UserService } from '../user.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-user-form',
@@ -20,12 +24,29 @@ export class UserFormComponent implements OnInit {
 
   select: number[] = [];
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private router: Router,
+    private errorHandler: ErrorHandlerService
+  ) { }
 
   ngOnInit(): void {
   }
 
   save(form: NgForm){
     console.log(form.value);
+    this.user.roles = form.value.roles;
+    this.insert();
+  }
+
+  insert() {
+    this.userService.insert(this.user).subscribe(
+      () => {
+        this.router.navigate(['/admin/users/list']);
+        this.messageService.add({ severity: 'success', detail: 'Usuário cadastrado com sucesso!' });
+      },
+      (error) => this.errorHandler.handle(error));
   }
 }
+
