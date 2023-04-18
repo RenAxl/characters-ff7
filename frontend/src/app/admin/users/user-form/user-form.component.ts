@@ -5,7 +5,7 @@ import { Role } from 'src/app/core/models/Role';
 import { User } from 'src/app/core/models/User';
 import { UserService } from '../user.service';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
@@ -28,20 +28,41 @@ export class UserFormComponent implements OnInit {
     private userService: UserService,
     private messageService: MessageService,
     private router: Router,
+    private route: ActivatedRoute,
     private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('userId');
+
+    if(id !=null){
+      this.userService.findById(id).subscribe(data => {
+        this.user = data;
+        this.user.roles = [];
+      })
+    }
   }
 
   save(form: NgForm){
-    console.log(form.value);
     this.user.roles = form.value.roles;
-    this.insert();
+    if (this.user.id != null && this.user.id.toString().trim() != null) { 
+      this.update();
+    }else{
+      this.insert();
+    }
   }
 
   insert() {
     this.userService.insert(this.user).subscribe(
+      () => {
+        this.router.navigate(['/admin/users/list']);
+        this.messageService.add({ severity: 'success', detail: 'Usuário cadastrado com sucesso!' });
+      },
+      (error) => this.errorHandler.handle(error));
+  }
+
+  update() {
+    this.userService.update(this.user).subscribe(
       () => {
         this.router.navigate(['/admin/users/list']);
         this.messageService.add({ severity: 'success', detail: 'Usuário cadastrado com sucesso!' });
