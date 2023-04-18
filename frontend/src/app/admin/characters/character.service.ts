@@ -35,5 +35,7 @@ export class CharacterService {
     return this.http.put<any>(AppConstants.backendServer + 'characters/' + character.id, character);
   }
 
-
+  delete(id: Number): Observable<any> {
+    return this.http.delete(AppConstants.backendServer + 'characters/' + id);
+  }
 }
