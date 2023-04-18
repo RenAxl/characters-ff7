@@ -54,7 +54,7 @@ export class CharacterListComponent implements OnInit {
     this.list(page);
   }
 
-  searchTrainer(name: string) {
+  searchCharacter(name: string) {
     this.filterName = name;
     this.list();
   }

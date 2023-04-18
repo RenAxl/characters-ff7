@@ -53,7 +53,7 @@ export class CategoryListComponent implements OnInit {
     this.list(page);
   }
 
-  searchTrainer(name: string) {
+  searchCategory(name: string) {
     this.filterName = name;
     this.list();
   }
