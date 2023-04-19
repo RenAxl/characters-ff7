@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CategoryService } from 'src/app/admin/categories/category.service';
 import { Category } from 'src/app/core/models/Category';
 import { Character } from 'src/app/core/models/Character';
+import { FilterCharacter } from 'src/app/core/models/FilterCharacter';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 @Component({
   selector: 'app-filter',
@@ -9,28 +12,55 @@ import { Character } from 'src/app/core/models/Character';
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit {
+
   @Input() text: string = '';
+  
+  filterCharacter: FilterCharacter = new FilterCharacter();
 
-  character: Character = new Character();
+  @Output() search = new EventEmitter<FilterCharacter>();
 
-  categories: Category[] = [
-    { id: 1, name: 'Principal' },
-    { id: 2, name: 'Membro da Shinra' },
-    { id: 3, name: 'Secundário' },
-    { id: 4, name: 'Vilão' },
-    { id: 5, name: 'Weapon' },
-    { id: 6, name: 'Turk' },
-    { id: 7, name: 'Monstro' },
-    { id: 8, name: 'Chefe' },
-  ];
+  categories: Category[] = [];
 
   select: number[] = [];
 
-  constructor() {}
+  constructor(
+    private categoryService: CategoryService
+    ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listCategories();
+  }
 
   save(form: NgForm) {
-    console.log(form.value);
+    if(form.value.category.id === undefined){
+      this.filterCharacter.categoryId = 0;
+      this.searchCharacter();
+    } else {
+    this.filterCharacter.name = form.value.name;
+    this.filterCharacter.categoryId = form.value.category.id;
+    this.searchCharacter();
+    }
   }
+
+  listCategories() {
+    let pagination: Pagination = new Pagination();
+    let categoryFilterName: string = '';
+    pagination.linesPerPage = 12;
+    this.categoryService
+      .list(pagination, categoryFilterName)
+      .subscribe((data) => {
+        this.categories = data.content;
+      });
+  }
+
+  searchCharacter(){
+    this.search.emit(this.filterCharacter);
+  }
+
+  formClear(){
+    this.filterCharacter.name = '';
+    this.filterCharacter.categoryId = 0;
+    this.search.emit(this.filterCharacter);
+  }
+
 }

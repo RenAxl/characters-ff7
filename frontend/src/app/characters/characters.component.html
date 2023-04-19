@@ -3,7 +3,10 @@
     <h1>Personagens do Final Fantasy 7</h1>
   </div>
 
-  <app-filter text="Digite o nome do Personagem"></app-filter>
+  <app-filter 
+  text="Digite o nome do Personagem"
+  (search)="searchCharacter($event)"
+  ></app-filter>
 
   <div class="row">
     <div

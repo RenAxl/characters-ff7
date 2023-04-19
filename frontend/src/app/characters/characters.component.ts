@@ -5,6 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 
 import { CharactersService } from './characters.service';
 import { Pagination } from '../core/models/Pagination';
+import { FilterCharacter } from '../core/models/FilterCharacter';
 
 @Component({
   selector: 'app-characters',
@@ -19,6 +20,8 @@ export class CharactersComponent implements OnInit {
 
   totalElements: number = 0;
 
+  filterCharacter: FilterCharacter = new FilterCharacter();
+
   constructor(private charactersService: CharactersService) { 
     this.pagination.linesPerPage = 4;
   }
@@ -30,7 +33,7 @@ export class CharactersComponent implements OnInit {
   list(page: number = 0): void {
     this.pagination.page = page;
     this.charactersService
-      .list(this.pagination)
+      .list(this.pagination, this.filterCharacter)
       .subscribe((data) => {
         this.characters = data.content;
         this.totalElements = data.totalElements;
@@ -40,5 +43,9 @@ export class CharactersComponent implements OnInit {
   changePage(event: LazyLoadEvent) {
     const page = event!.first! / event!.rows!;
     this.list(page);
+  }
+  searchCharacter(filterCharacter: FilterCharacter) {
+    this.filterCharacter = filterCharacter;
+    this.list();
   }
 }
