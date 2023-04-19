@@ -6,13 +6,24 @@
   <app-filter text="Digite o nome do Personagem"></app-filter>
 
   <div class="row">
-    <div class="col-sm-6 col-lg-4 col-xl-3"  *ngFor="let character of characters; index as i">
+    <div
+      class="characters-list col-sm-6 col-lg-4 col-xl-3"
+      *ngFor="let character of characters; index as i"
+    >
       <a [routerLink]="['/characters', character.id]">
         <app-card [character]="character"></app-card>
       </a>
     </div>
-
   </div>
 
-  <p-paginator [first]="1" [rows]="4" [totalRecords]="8"></p-paginator>
+  <div class="pagination">
+    <p-paginator
+      [dropdownAppendTo]="characters"
+      [first]="0"
+      [rows]="pagination.linesPerPage"
+      [totalRecords]="totalElements"
+      (onPageChange)="changePage($event)"
+    >
+    </p-paginator>
+  </div>
 </div>

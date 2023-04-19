@@ -12,8 +12,23 @@
   color: blue;
 }
 
+.pagination{
+  justify-content: center;
+}
+
 @media (min-width: 576px) {
   .characters-container {
     font-size: 30px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .characters-title h1 {
+  font-size: 80px;
+  margin-bottom: 50px;
+  }
+
+  .pagination {
+    margin-top: 100px;
   }
 }
