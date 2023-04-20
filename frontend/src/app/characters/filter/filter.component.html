@@ -1,9 +1,5 @@
 <div class="filter-container">
-  <form
-    #categoryForm="ngForm"
-    (ngSubmit)="save(categoryForm)"
-    class="filter-form"
-  >
+  <form #categoryForm="ngForm" class="filter-form">
     <div class="filter-name-container">
       <input
         pInputText
@@ -14,7 +10,7 @@
         #name="ngModel"
         class="form-control"
       />
-      <button class="filter-search-icon">
+      <button class="filter-search-icon" (click)="save(categoryForm)">
         <img src="assets/images/search-icon.svg" alt="filtro" />
       </button>
     </div>
@@ -30,22 +26,12 @@
           styleClass="form-control"
         ></p-dropdown>
       </div>
-    </div>
-
-    <!--Foi criado um formulário dentro do outro para o botão 
-   "LIMPAR FILTRO" não gerar evento de Submit do ngForm. Quando
-    este botão estava dentro do formulário principal, ao clicar nele,
-    a função "formClear()"" estava sendo chamada e também estava sendo chamado
-    a função "save(categoryForm)", isto porque qualquer botão neste
-    formulário chama do evento  "(ngSubmit)" que possui a função 
-   "save(categoryForm)"-->
-    <form class="filter-bottom-container">
       <button
         class="btn btn-outline-secondary btn-filter-clear"
-        (click)="formClear()"
+        (click)="formClear(categoryForm)"
       >
         LIMPAR<span class="btn-filter-word"> FILTRO</span>
       </button>
-    </form>
+    </div>
   </form>
 </div>

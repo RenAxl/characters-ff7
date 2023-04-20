@@ -12,9 +12,8 @@ import { Pagination } from 'src/app/core/models/Pagination';
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit {
-
   @Input() text: string = '';
-  
+
   filterCharacter: FilterCharacter = new FilterCharacter();
 
   @Output() search = new EventEmitter<FilterCharacter>();
@@ -23,23 +22,21 @@ export class FilterComponent implements OnInit {
 
   select: number[] = [];
 
-  constructor(
-    private categoryService: CategoryService
-    ) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.listCategories();
   }
 
   save(form: NgForm) {
-    if(form.value.category.id === undefined){
-      this.filterCharacter.categoryId = 0;
-      this.searchCharacter();
-    } else {
     this.filterCharacter.name = form.value.name;
-    this.filterCharacter.categoryId = form.value.category.id;
-    this.searchCharacter();
+
+    if (form.value.category.length === 0) {
+      this.filterCharacter.categoryId = 0;
+    } else {
+      this.filterCharacter.categoryId = form.value.category.id;
     }
+    this.searchCharacter();
   }
 
   listCategories() {
@@ -53,14 +50,17 @@ export class FilterComponent implements OnInit {
       });
   }
 
-  searchCharacter(){
+  searchCharacter() {
     this.search.emit(this.filterCharacter);
   }
 
-  formClear(){
-    this.filterCharacter.name = '';
-    this.filterCharacter.categoryId = 0;
-    this.search.emit(this.filterCharacter);
-  }
+  formClear(form: NgForm) {
+    this.filterCharacter = new FilterCharacter();
+    this.searchCharacter();
 
+    form.reset();
+    form.value.name = '';
+    form.value.category = { id: 0, name: '' };
+    form.setValue(form.value);
+  }
 }

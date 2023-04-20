@@ -14,7 +14,6 @@ export class CharactersService {
   constructor(private http: HttpClient) { }
 
   list(pagination: Pagination, filterCharacter: FilterCharacter): Observable<any> {
-    console.log(filterCharacter);
 
     let params = new HttpParams()
     .set('name', String(filterCharacter.name))
