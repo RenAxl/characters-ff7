@@ -16,14 +16,17 @@ export class NavbarComponent implements OnInit {
     AuthService.emitiLogin.subscribe((data) => {
       this.userLoggedIn = data;
     });
+
+    AuthService.emitiLogout.subscribe((data) => {
+      this.userLoggedIn = data;
+    });
   }
 
   ngOnInit(): void {
   }
 
-  save() {
-    console.log("TESTE")
-
+  logout(){
+    this.authService.logout();
   }
 
 }

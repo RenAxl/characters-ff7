@@ -54,4 +54,10 @@ export class AuthService {
     }
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.decodedToken = '';
+    AuthService.emitiLogout.emit(this.decodedToken?.user_name);
+  }
+
 }
