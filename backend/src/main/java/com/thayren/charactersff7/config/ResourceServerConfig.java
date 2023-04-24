@@ -42,13 +42,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		}
 		
 		http.authorizeRequests()
-		.antMatchers("/oauth/token", "/h2-console/**").permitAll();
-		//.antMatchers(HttpMethod.GET, "/characters/**", "/categories/**").permitAll()
-		//.antMatchers(HttpMethod.POST, "/characters/**", "/categories/**").hasAnyRole("ANALYST", "ADMIN")
-		//.antMatchers(HttpMethod.PUT, "/characters/**", "/categories/**").hasAnyRole("ANALYST", "ADMIN")
-		//.antMatchers(HttpMethod.DELETE, "/characters/**", "/categories/**").hasAnyRole("ANALYST", "ADMIN")
-		//.antMatchers("/users/**").hasRole("ADMIN")
-		//.anyRequest().authenticated();
+		.antMatchers("/oauth/token", "/h2-console/**").permitAll()
+		.antMatchers(HttpMethod.GET, "/characters/**", "/categories/**").permitAll()
+		.antMatchers(HttpMethod.POST, "/characters/**", "/categories/**").hasAnyRole("ANALYST", "ADMIN")
+		.antMatchers(HttpMethod.PUT, "/characters/**", "/categories/**").hasAnyRole("ANALYST", "ADMIN")
+		.antMatchers(HttpMethod.DELETE, "/characters/**", "/categories/**").hasAnyRole("ANALYST", "ADMIN")
+		.antMatchers("/users/**").hasRole("ADMIN")
+		.anyRequest().authenticated();
 		
 		http.cors().configurationSource(corsConfigurationSource());
 	}

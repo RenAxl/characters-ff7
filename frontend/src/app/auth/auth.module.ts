@@ -6,7 +6,7 @@ import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.modules';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared/shared.module';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token')!;
@@ -31,5 +31,6 @@ export function tokenGetter(): string {
       }
     }),
   ],
+  providers: [JwtHelperService]
 })
 export class AuthModule { }

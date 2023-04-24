@@ -6,14 +6,20 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { ErrorHandlerService } from './error-handler.service';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { NotAuthorizedComponent } from './not-authorized.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NotAuthorizedComponent,
+    PageNotFoundComponent
+
+  ],
   imports: [
     CommonModule,
     
     ToastModule,
-    ConfirmDialogModule,
+    ConfirmDialogModule
   ],
   exports: [
     ToastModule,

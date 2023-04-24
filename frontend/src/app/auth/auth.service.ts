@@ -60,4 +60,24 @@ export class AuthService {
     AuthService.emitiLogout.emit(this.decodedToken?.user_name);
   }
 
+  haveRole(permissao: string) {
+    return this.decodedToken && this.decodedToken.authorities.includes(permissao);
+  }
+
+  isAccessTokenInvalid() {
+    const token = localStorage.getItem('token');
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
+  haveAnyRole(roles: any) {
+    for (const role of roles) {
+      if (this.haveRole(role)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
 }
