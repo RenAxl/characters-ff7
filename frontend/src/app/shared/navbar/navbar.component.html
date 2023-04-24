@@ -33,8 +33,13 @@
 
     <div class="nav-login-logout">
       <fa-icon icon="user" class="mr-2"></fa-icon>
-      <span>{{ userLoggedIn }}</span>
-      <a routerLink="auth/login"> - LOGIN // LOGOUT </a>
+      <span
+        >{{ userLoggedIn }}
+        <a *ngIf="userLoggedIn" href="javascript:;" (click)="save()">
+          - LOGOUT
+        </a>
+        <a *ngIf="!userLoggedIn" routerLink="auth/login"> LOGIN </a>
+      </span>
     </div>
   </div>
 </nav>
