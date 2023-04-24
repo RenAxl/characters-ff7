@@ -1,33 +1,33 @@
 <div class="character-details-container">
   <div class="character-details-card">
-    <div class="title">
-      <h1>Cloud Strife</h1>
+    <div class="title mb-3">
+      <h1>{{character.name}}</h1>
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <div class="img-container">
           <div class="img-container-top">
-            <img src="assets/images/sidebar1.jpg" alt="cloud strife" />
+            <img src={{character.imgUrl}} alt={{character.name}} />
           </div>
           <div class="img-container-bottom">
-            <p>História do personagem</p>
+            <p>{{character.history}}</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="information-container">
-          <div class="information-container-top">
+          <div class="information-container-top" *ngFor="let category of character.categories; index as i">
             <h1>Categoria:</h1>
-            <h2>Principal</h2>
+            <h2>{{ category.name }}</h2>
           </div>
           <div class="information-container-middle">
             <h1>Idade:</h1>
-            <h2>21</h2>
+            <h2>{{character.age}}</h2>
           </div>
           <div class="information-container-bottom">
             <h1>Residência:</h1>
-            <h2>Nibelhein</h2>
+            <h2>{{character.residence}}</h2>
           </div>
         </div>
         <div class="details-buttons-container">
