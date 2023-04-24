@@ -4,11 +4,11 @@ import { NgForm } from '@angular/forms';
 import { User } from 'src/app/core/models/User';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   user: User = new User();
 
