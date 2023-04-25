@@ -34,4 +34,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
+  haveRole(role: string){
+    return this.authService.haveRole(role);
+  }
+
 }

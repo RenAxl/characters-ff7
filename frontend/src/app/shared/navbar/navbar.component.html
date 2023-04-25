@@ -23,7 +23,7 @@
           </a>
         </li>
         <li>
-          <a routerLink="/admin/characters/list" routerLinkActive="active">
+          <a routerLink="/admin/characters/list" routerLinkActive="active"  *ngIf="haveRole('ROLE_ANALYST' || 'ROLE_ADMIN')">
             <fa-icon icon="tools" class="mr-2"></fa-icon>
             ADMIN
           </a>
